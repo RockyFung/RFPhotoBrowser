@@ -14,8 +14,6 @@
 
 @interface RFPhotoCollectionVC ()<UICollectionViewDelegate, UICollectionViewDataSource>
 @property (nonatomic,strong) UICollectionView *collection;
-@property (nonatomic,strong) NSMutableArray *imageArray;
-@property (nonatomic,strong) UIView *picView;
 @end
 
 // 间隔
@@ -24,12 +22,7 @@ NSInteger const margin = 10;
 NSString *const cellID = @"collectionViewCellID";
 
 @implementation RFPhotoCollectionVC
-- (NSMutableArray *)imageArray{
-    if (_imageArray == nil) {
-        _imageArray = [NSMutableArray array];
-    }
-    return _imageArray;
-}
+
 - (void)viewDidLoad {
     [super viewDidLoad];
     UICollectionViewFlowLayout *layout = [[UICollectionViewFlowLayout alloc]init];
@@ -79,24 +72,6 @@ NSString *const cellID = @"collectionViewCellID";
     RFPhotoScrollerView *scrollerView = [[RFPhotoScrollerView alloc]initWithImagesArray:self.photoArray currentIndex:indexPath.row];
     [[[UIApplication sharedApplication] keyWindow] addSubview:scrollerView];
 }
-
-- (void)closeView{
-    [self.picView removeFromSuperview];
-}
-
-- (void)tapAction:(UITapGestureRecognizer *)tap{
-    [self closeView];
-}
-
-
-
-
-
-
-
-
-
-
 
 
 
