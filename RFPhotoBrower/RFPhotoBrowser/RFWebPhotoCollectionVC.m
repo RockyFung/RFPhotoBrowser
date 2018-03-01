@@ -109,7 +109,8 @@ NSString *const cellID2 = @"collectionViewCellID2";
     for (NSString *imageUrl in self.photoArray) {
         // 任务加入组
         dispatch_group_enter(imageGroup);
-        [[SDWebImageManager sharedManager]downloadImageWithURL:[NSURL URLWithString:imageUrl] options:SDWebImageRetryFailed progress:^(NSInteger receivedSize, NSInteger expectedSize) {
+        NSString *urlUTF8 = [imageUrl stringByAddingPercentEscapesUsingEncoding:NSUTF8StringEncoding];
+        [[SDWebImageManager sharedManager]downloadImageWithURL:[NSURL URLWithString:urlUTF8] options:SDWebImageRetryFailed progress:^(NSInteger receivedSize, NSInteger expectedSize) {
             
         } completed:^(UIImage *image, NSError *error, SDImageCacheType cacheType, BOOL finished, NSURL *imageURL) {
             if (image) {
